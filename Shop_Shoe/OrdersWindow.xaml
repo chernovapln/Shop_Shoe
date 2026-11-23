@@ -1,0 +1,30 @@
+﻿<Window x:Class="Shop_Shoe.OrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Чудо Обувь - Заказы" Height="600" Width="900"
+        Background="#FFFFFF" FontFamily="Calibri" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="HeaderText" Text="Список заказов" FontSize="22" FontWeight="Bold" Margin="0,0,0,10"/>
+        <DataGrid x:Name="OrdersDataGrid" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" RowHeaderWidth="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding DateOrder, StringFormat=\{0:dd.MM.yyyy HH:mm\}}" Width="150"/>
+                <DataGridTextColumn Header="Клиент (ФИО)" Binding="{Binding ClientName}" Width="*"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding TotalSum, StringFormat={}{0} руб.}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="Добавить заказ" Click="AddOrderButton_Click" Width="150" Height="35" 
+                    Background="#70B2AF" Foreground="White" FontWeight="Bold" BorderThickness="0" Margin="0,0,10,0"/>
+            <Button Content="Просмотр деталей" Click="ViewDetailsButton_Click" Width="150" Height="35" 
+                    Background="#70B2AF" Foreground="White" FontWeight="Bold" BorderThickness="0" Margin="0,0,10,0"/>
+            <Button x:Name="DeleteOrderButton" Content="Удалить заказ" Click="DeleteOrderButton_Click" Width="150" Height="35" 
+                    Background="#FF8080" Foreground="White" FontWeight="Bold" BorderThickness="0" Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</Window>

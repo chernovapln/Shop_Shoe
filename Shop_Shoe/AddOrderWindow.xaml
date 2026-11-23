@@ -1,0 +1,38 @@
+﻿<Window x:Class="Shop_Shoe.AddOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Чудо Обувь - Создание заказа" Height="600" Width="800"
+        Background="#FFFFFF" FontFamily="Calibri" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="Выберите клиента:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox x:Name="ClientComboBox" Width="300" Height="30" DisplayMemberPath="FullName" SelectedValuePath="Id"/>
+        </StackPanel>
+        <TextBox x:Name="ProductSearchTextBox" Grid.Row="1" Height="30" FontSize="14" 
+                 TextChanged="ProductSearchTextBox_TextChanged" Padding="5" Margin="0,0,0,15"/>
+        <DataGrid x:Name="ProductsDataGrid" Grid.Row="2" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" RowHeaderWidth="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding NameProduct}" Width="*"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding FinalPrice, StringFormat={}{0} руб.}" Width="120"/>
+                <DataGridTextColumn Header="Остаток" Binding="{Binding TotalQuantity}" Width="100"/>
+                <DataGridTemplateColumn Header="Действие" Width="120">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Выбрать" Click="SelectProduct_Click" Background="#70B2AF" Foreground="White" FontWeight="Bold" BorderThickness="0" Padding="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button x:Name="CheckoutButton" Content="Оформить заказ (0)" Click="CheckoutButton_Click" 
+                    Width="200" Height="40" Background="#70B2AF" Foreground="White" FontSize="16" FontWeight="Bold" BorderThickness="0"/>
+        </StackPanel>
+    </Grid>
+</Window>

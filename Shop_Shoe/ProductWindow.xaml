@@ -1,0 +1,37 @@
+﻿<Window x:Class="Shop_Shoe.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Чудо Обувь - Просмотр товара" Height="600" Width="800"
+        Background="#FFFFFF" FontFamily="Calibri" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Content="← Назад в каталог" Click="BackButton_Click" HorizontalAlignment="Left" Width="150" Height="35" Margin="0,0,0,20"
+                Background="#70B2AF" Foreground="White" BorderThickness="0" FontWeight="Bold"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding PicturePath}" Width="280" Height="280" Stretch="Uniform" Grid.Column="0"/>
+            <StackPanel Grid.Column="1" Margin="20,0">
+                <TextBlock Text="{Binding NameProduct}" FontSize="28" FontWeight="Bold" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding ManufacturerName, StringFormat=Производство: {0}}" FontSize="16" Margin="0,10,0,0"/>
+                <TextBlock Text="{Binding CategoryName, StringFormat=Категория: {0}}" FontSize="16"/>
+                <TextBlock Text="{Binding Structure, StringFormat=Состав: {0}}" FontSize="16" TextWrapping="Wrap" Margin="0,10,0,10"/>
+                <TextBlock Text="{Binding Description}" FontSize="14" TextWrapping="Wrap" Foreground="Gray" Margin="0,0,0,20"/>
+                <TextBlock Text="{Binding FinalPrice, StringFormat=Цена: {0} руб.}" FontSize="26" FontWeight="Bold" Foreground="#70B2AF"/>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="Размер:" FontSize="16" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="SizeComboBox" Width="120" Height="30" DisplayMemberPath="Size1" SelectedValuePath="Id"/>
+                    <TextBlock Text="Кол-во:" FontSize="16" VerticalAlignment="Center" Margin="20,0,10,0"/>
+                    <TextBox x:Name="QuantityTextBox" Width="60" Height="30" Text="1" TextAlignment="Center"/>
+                </StackPanel>
+                <Button x:Name="OrderButton" Content="Заказать" Click="OrderButton_Click" Height="45" Margin="0,30,0,0" FontSize="18" Width="250" HorizontalAlignment="Left"
+                        Background="#70B2AF" Foreground="White" BorderThickness="0" FontWeight="Bold"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
